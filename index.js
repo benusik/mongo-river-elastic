@@ -352,7 +352,7 @@ class Transporter {
                 process.exit('Elastic connection Failed');
             }
             else {
-                this.isTypeDepricated = parseInt(response.version.number) > 6;
+                this.isTypeDepricated = parseInt(response.version) > 6;
             }
 
         })

@@ -42,19 +42,15 @@ class River {
         switch (operation) {
             case 'insert':
                 if (!Array.isArray(doc)) {
-                    doc[_this._custom_mongo_db_field] = timestamp;
                     returnVal = doc;
                 }
                 else {
                     returnVal = doc.map((x) => {
-                        x[_this._custom_mongo_db_field] = timestamp;
                         return x;
                     });
                 }
                 break;
-
             case 'update':
-                doc['$set'][_this._custom_mongo_db_field] = timestamp;
                 returnVal = doc;
 
         }
@@ -439,6 +435,7 @@ class Transporter {
                 })
             }))
                 .then(() => {
+                    _this.logger.debug(`[Transporter] Removed document count: ${ids.length}`);
                     _this.logger.debug(`[Transporter] Removed document count: ${ids.length}`);
                 })
                 .catch((err) => {
